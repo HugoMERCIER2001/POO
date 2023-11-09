@@ -36,4 +36,18 @@ public class Balls{
         
 
     }
+
+    void translate(int dx, int dy){
+        //fonction qui translate toutes les balles de dx en x et dy en y.
+        for(int i = 0; i < this.listeBalls.length; i++){
+            this.listeBalls[i].translate(dx, dy);
+        }
+    }
+
+    void reInit(){
+        // fonction qui remet toutes les balles à leur position initiale.
+        for(int i = 0; i < this.listeBalls.length; i++){
+            this.listeBalls[i] = this.listeBallsInit[i];
+        }
+    }
 }
