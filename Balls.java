@@ -13,7 +13,7 @@ public class Balls{
     public Point getBallByIndice(int i){
         //renvoie la balle se trouvant dans listBalls à l'indice i.
         if(i >= this.listeBalls.length){
-            throw new IllegalArgumentException("L'indice dépasse la taille du tableau listBalls.")
+            throw new IllegalArgumentException("L'indice dépasse la taille du tableau listBalls.");
         }
         else{
             return listeBalls[i];
@@ -23,7 +23,7 @@ public class Balls{
     public Point getBallInitByIndice(int i){
         //renvoie la balle se trouvant dans listBallsInit à l'indice i.
         if(i >= this.listeBalls.length){
-            throw new IllegalArgumentException("L'indice dépasse la taille du tableau listBallsInit.")
+            throw new IllegalArgumentException("L'indice dépasse la taille du tableau listBallsInit.");
         }
         else{
             return listeBallsInit[i];
@@ -33,7 +33,7 @@ public class Balls{
     public void initiePoint(Point p, int i){
         //fonction qui initie le Point d'indice i la classe (modifie listeBalls ET listeBallsInit).
         if(i >= this.nbBalls){
-            throw new IllegalArgumentException("L'indice dépasse la taille du tableau listeBalls")
+            throw new IllegalArgumentException("L'indice dépasse la taille du tableau listeBalls");
         }
         else{
         this.listeBalls[i] = p;
@@ -44,8 +44,8 @@ public class Balls{
     public Balls(int nbBalls){
         //Constructeur de la classe qui crée un objet Balls dont tous les éléments de listeBalls et listeBallsInit sont à (0, 0).
         this.nbBalls = nbBalls;
-        this.listeBalls = Point[nbBalls];
-        this.listeBallsInit = Point[nbBalls];
+        this.listeBalls = new Point[nbBalls];
+        this.listeBallsInit = new Point[nbBalls];
         for(int i = 0; i <= nbBalls; i ++){
             listeBalls[i] = new Point();
             listeBallsInit[i] = new Point();
@@ -57,5 +57,20 @@ public class Balls{
         this.nbBalls = listePoints.length;
         this.listeBalls = listePoints;
         this.listeBallsInit = listePoints;
+    }
+
+    
+    void translate(int dx, int dy){
+        //fonction qui translate toutes les balles de dx en x et dy en y.
+        for(int i = 0; i < this.listeBalls.length; i++){
+            this.listeBalls[i].translate(dx, dy);
+        }
+    }
+
+    void reInit(){
+        // fonction qui remet toutes les balles à leur position initiale.
+        for(int i = 0; i < this.listeBalls.length; i++){
+            this.listeBalls[i] = this.listeBallsInit[i];
+        }
     }
 }
