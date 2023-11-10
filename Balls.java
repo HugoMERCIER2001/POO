@@ -58,4 +58,4 @@ public class Balls{
         this.listeBalls = listePoints;
         this.listeBallsInit = listePoints;
     }
-}²
+}
