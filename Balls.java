@@ -55,8 +55,14 @@ public class Balls{
     public Balls(Point[] listePoints){
         //Constructeur de la classe qui crée un objet Balls dont la liste de Points est la liste donnée en argument.
         this.nbBalls = listePoints.length;
-        this.listeBalls = listePoints;
-        this.listeBallsInit = listePoints;
+        this.listeBalls = new Point[listePoints.length];
+        this.listeBallsInit = new Point[listePoints.length];
+
+        // Copie des éléments de listePoints dans listeBalls et listeBallsInit, évite que la modification de listeBalls entraine celle de listeBallsInit.
+        for (int i = 0; i < listePoints.length; i++) {
+            this.listeBalls[i] = (Point) listePoints[i].clone();//l'utilisation de .clone() ici permet de faire des points dans listeBalls et listeBallsInit des objets distincs.
+            this.listeBallsInit[i] = (Point) listePoints[i].clone();
+        }
     }
 
     
@@ -70,7 +76,16 @@ public class Balls{
     void reInit(){
         // fonction qui remet toutes les balles à leur position initiale.
         for(int i = 0; i < this.listeBalls.length; i++){
-            this.listeBalls[i] = this.listeBallsInit[i];
+            this.listeBalls[i] =(Point) this.listeBallsInit[i].clone();//l'utilisation de .clone() ici permet d'éviter de lier les points des 2 listes.
         }
+    }
+
+    @Override
+    public String toString(){
+        String retour = new String();
+        for(int i = 0; i <nbBalls; i++){
+            retour = retour + "balle numéro " + i + " : (" + this.listeBalls[i].x + ", " + this.listeBalls[i].y + ")" + "\n";
+        }
+        return retour;
     }
 }
