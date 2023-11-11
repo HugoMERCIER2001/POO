@@ -46,7 +46,7 @@ public class Balls{
         this.nbBalls = nbBalls;
         this.listeBalls = new Point[nbBalls];
         this.listeBallsInit = new Point[nbBalls];
-        for(int i = 0; i <= nbBalls; i ++){
+        for(int i = 0; i < nbBalls; i ++){
             listeBalls[i] = new Point();
             listeBallsInit[i] = new Point();
         }
