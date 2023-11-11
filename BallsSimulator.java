@@ -1,7 +1,6 @@
-import gui.Simulable;
+import gui.*;
 
-public class BallsSimulator implements Simulable {
-
+public class BallsSimulator implements Simulable{
     private Balls balls;
     
     @Override
