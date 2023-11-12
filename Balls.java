@@ -65,11 +65,7 @@ public class Balls{
         }
     }
 
-<<<<<<< HEAD
-    @Override
-=======
     
->>>>>>> ccd3ee38a0cc49f3f6366c60e9c3f96425e887a9
     void translate(int dx, int dy){
         //fonction qui translate toutes les balles de dx en x et dy en y.
         for(int i = 0; i < this.listeBalls.length; i++){
@@ -77,17 +73,6 @@ public class Balls{
         }
     }
 
-<<<<<<< HEAD
-    @Override
-    void reInit(){
-        // fonction qui remet toutes les balles à leur position initiale.
-        for(int i = 0; i < this.listeBalls.length; i++){
-            this.listeBalls[i] = this.listeBallsInit[i];
-        }
-    }
-
-}
-=======
     void reInit(){
         // fonction qui remet toutes les balles à leur position initiale.
         for(int i = 0; i < this.listeBalls.length; i++){
@@ -104,4 +89,3 @@ public class Balls{
         return retour;
     }
 }
->>>>>>> ccd3ee38a0cc49f3f6366c60e9c3f96425e887a9
