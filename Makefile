@@ -96,14 +96,3 @@ compileConway:
 runTestConway:
 	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestConway
 
-###############################################Partie Test Conway 2#############################################################""
-
-conway2: compileCells compileConway2 runTestConway2
-
-compileConway2:
-	javac -d $(BIN_DIR) -cp .$(SEP)./$(CELLS2_DIR)$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(CELLS2_DIR)/Conway2.java
-	javac -d $(BIN_DIR) -cp .$(SEP)./$(CELLS2_DIR)$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(CELLS2_DIR)/ConwaySimulator2.java
-	javac -d $(BIN_DIR) -cp .$(SEP)./$(CELLS2_DIR)$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(CELLS2_DIR)/TestConway2.java
-
-runTestConway2:
-	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestConway2
