@@ -86,7 +86,7 @@ compileCells:
 
 ###############################################Partie Test Conway#############################################################""
 
-conway: compileCells compileConway runTestConway
+conway: compileConway runTestConway
 
 compileConway:
 	javac -d $(BIN_DIR) -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(CONWAY_DIR)/*.java

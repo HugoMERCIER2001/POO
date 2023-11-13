@@ -6,7 +6,7 @@ public class TestConway {
 
     public static void main(String[] args) {
         Conway conway = new Conway(10, 10);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 3; i < 10; i++) {
             conway.setCellState(i, 0, 1);
             conway.setCellState(i, 9, 1);
             conway.setCellState(0, i, 1);
