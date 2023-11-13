@@ -34,27 +34,28 @@
 
 ###############################################Partie Test Balls Simulator#############################################################""
 
-# Define the source directories
+# Definie les directories
 SRC_DIR = src
 BIN_DIR = bin
+LIB_DIR = lib
 BALLS_DIR = $(SRC_DIR)/balls
 
-# Define the classpath
-# CLASSPATH = .:lib/gui.jar # Linux
-CLASSPATH = .;lib/gui.jar # Windows
+# Definie le separator
+# SEP = : # pour linux
+SEP = ;# pour windows
+
 
 all: balls
 
 balls: compileBalls runTestBallsSimulator
 
 compileBalls:
-	javac -d $(BIN_DIR) -classpath $(CLASSPATH) $(BALLS_DIR)/*.java
+	javac -d $(BIN_DIR) -classpath .$(SEP)./$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(BALLS_DIR)/*.java
 
 runTestBallsSimulator:
-	java -classpath $(CLASSPATH) TestBallsSimulator
+	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestBallsSimulator
 
 clean:
-	rm -rf $(SRC_DIR)/*.class
-
+	rm -rf $(BIN_DIR)/
 
 ###############################################Partie Test Balls Simulator#############################################################""
