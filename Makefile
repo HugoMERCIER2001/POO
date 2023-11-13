@@ -39,23 +39,35 @@ SRC_DIR = src
 BIN_DIR = bin
 LIB_DIR = lib
 BALLS_DIR = $(SRC_DIR)/balls
+INVADER_DIR = $(SRC_DIR)/invader
 
 # Definie le separator
-# SEP = : # pour linux
+# SEP = :# pour linux
 SEP = ;# pour windows
 
 
 all: balls
 
+invader: compileInvader runTestInvader
+
+compileInvader:
+	javac -d $(BIN_DIR) -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/Invader.class $(INVADER_DIR)/*.java
+
+runTestInvader:
+	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestInvader 
+
 balls: compileBalls runTestBallsSimulator
 
 compileBalls:
-	javac -d $(BIN_DIR) -classpath .$(SEP)./$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(BALLS_DIR)/*.java
+	javac -d $(BIN_DIR) -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(BALLS_DIR)/*.java
 
 runTestBallsSimulator:
 	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestBallsSimulator
 
 clean:
-	rm -rf $(BIN_DIR)/
+#pour windows
+	del /S /Q $(BIN_DIR)\* 
+#pour linux
+# rm -rf $(BIN_DIR)/* 
 
 ###############################################Partie Test Balls Simulator#############################################################""
