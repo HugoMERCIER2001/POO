@@ -5,16 +5,23 @@ public class TestConway {
 
 
     public static void main(String[] args) {
-        Conway conway = new Conway(10, 10);
-        for (int i = 3; i < 10; i++) {
-            conway.setCellState(i, 0, 1);
-            conway.setCellState(i, 9, 1);
-            conway.setCellState(0, i, 1);
-            conway.setCellState(9, i, 1);
+        Conway conway = new Conway(75, 50);
+        int cellSize = 10;
+
+        // remplissage aléatoire de l'automate
+        for(int i = 0; i < conway.getLength(); i++){
+            for(int j = 0; j < conway.getHeight(); j++){
+                conway.setCellState(i, j, (int) (Math.random() * 2));
+            }
         }
 
-        GUISimulator gui = new GUISimulator(1000, 1000, Color.BLACK);
-        gui.setSimulable(new ConwaySimulator(gui, conway));
+        // redefinie cet etat de l'automate comme etat initial
+        conway.setInit();
+
+        GUISimulator gui = new GUISimulator(500, 500, Color.BLACK);
+
+        ConwaySimulator conwaySimulator = new ConwaySimulator(gui, conway, cellSize);
+        gui.setSimulable(conwaySimulator);        
     }
 
 }

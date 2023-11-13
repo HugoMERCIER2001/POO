@@ -41,7 +41,7 @@ LIB_DIR = lib
 BALLS_DIR = $(SRC_DIR)/balls
 INVADER_DIR = $(SRC_DIR)/invader
 CELLS_DIR = $(SRC_DIR)/cells
-CONWAY_DIR = $(CELLS_DIR)/conway
+CELLS2_DIR = $(SRC_DIR)/cells2
 
 # Definie le separator
 # SEP = :# pour linux
@@ -82,14 +82,28 @@ runTestBallsSimulator:
 ###############################################Partie Test Cells#############################################################""
 
 compileCells:
-	javac -d $(BIN_DIR) $(CELLS_DIR)/*.java
+	javac -d $(BIN_DIR) $(CELLS_DIR)/Cell.java
 
 ###############################################Partie Test Conway#############################################################""
 
-conway: compileConway runTestConway
+conway: compileCells compileConway runTestConway
 
 compileConway:
-	javac -d $(BIN_DIR) -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(CONWAY_DIR)/*.java
+	javac -d $(BIN_DIR) -classpath .$(SEP)./$(CELLS_DIR)$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(CELLS_DIR)/Conway.java
+	javac -d $(BIN_DIR) -classpath .$(SEP)./$(CELLS_DIR)$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(CELLS_DIR)/ConwaySimulator.java
+	javac -d $(BIN_DIR) -cp .$(SEP)./$(CELLS_DIR)$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(CELLS_DIR)/TestConway.java
 
 runTestConway:
 	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestConway
+
+###############################################Partie Test Conway 2#############################################################""
+
+conway2: compileCells compileConway2 runTestConway2
+
+compileConway2:
+	javac -d $(BIN_DIR) -cp .$(SEP)./$(CELLS2_DIR)$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(CELLS2_DIR)/Conway2.java
+	javac -d $(BIN_DIR) -cp .$(SEP)./$(CELLS2_DIR)$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(CELLS2_DIR)/ConwaySimulator2.java
+	javac -d $(BIN_DIR) -cp .$(SEP)./$(CELLS2_DIR)$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(CELLS2_DIR)/TestConway2.java
+
+runTestConway2:
+	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestConway2

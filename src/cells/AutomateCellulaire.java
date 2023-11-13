@@ -8,12 +8,17 @@ public abstract class AutomateCellulaire {
         this.length = length;
         this.height = height;
         this.cells = new Cell[length][height];
+        this.cellsInit = new Cell[length][height];
         for(int i = 0; i < length; i++){
             for(int j = 0; j < height; j++){
                 this.cells[i][j] = new Cell(0);
+                this.cellsInit[i][j] = new Cell(0);
             }
         }
-        Cell[][] cellsInit = (Cell[][]) this.cells.clone();
+    }
+
+    public Cell[][] getCells(){
+        return this.cells;
     }
 
     public int getLength(){
@@ -40,6 +45,29 @@ public abstract class AutomateCellulaire {
         }
     }
 
+    public int getCellState(int i, int j){
+        if (i >= 0 && i < length && j >= 0 && j < height) {
+            return this.cells[i][j].getState();
+        } else {
+            throw new IndexOutOfBoundsException("Indices out of bounds");
+        }
+    }
+
+    public int getNbNeighbours(int i, int j){
+        int nbNeighbours = 0;
+        for(int k = -1; k <= 1; k++){
+            for(int l = -1; l <= 1; l++){
+                if(!(k == 0 && l == 0)){
+                    if(i + k >= 0 && i + k < getLength() && j + l >= 0 && j + l < getHeight()){
+                        nbNeighbours += getCellState(i + k, j + l);
+                    }
+                }
+            }
+        }
+        return nbNeighbours;
+    }
+
+
     @Override
     public String toString(){
         String s = "";
@@ -54,7 +82,24 @@ public abstract class AutomateCellulaire {
 
     public abstract void next();
 
+    public Cell[][] getInit(){
+        return this.cellsInit;
+    }
+
+    public void setInit(){
+        for (int i = 0; i < length; i++){
+            for (int j = 0; j < this.height; j++){
+                this.cellsInit[i][j].setState(this.cells[i][j].getState());
+            }
+        }
+    }
+
     public void reInit(){
-        this.cells = (Cell[][]) this.cellsInit.clone();
+        for (int i = 0; i < length; i++){
+            for (int j = 0; j < this.height; j++){
+                this.cells[i][j].setState(this.cellsInit[i][j].getState());
+            }
+        }
+        System.out.println(getInit());
     }
 }
