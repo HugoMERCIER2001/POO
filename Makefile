@@ -40,6 +40,8 @@ BIN_DIR = bin
 LIB_DIR = lib
 BALLS_DIR = $(SRC_DIR)/balls
 INVADER_DIR = $(SRC_DIR)/invader
+CELLS_DIR = $(SRC_DIR)/cells
+CONWAY_DIR = $(CELLS_DIR)/conway
 
 # Definie le separator
 # SEP = :# pour linux
@@ -47,6 +49,15 @@ SEP = ;# pour windows
 
 
 all: balls
+
+clean:
+#pour windows
+	del /S /Q $(BIN_DIR)\* 
+#pour linux
+# rm -rf $(BIN_DIR)/* 
+
+
+###############################################Partie Test Invader#############################################################""
 
 invader: compileInvader runTestInvader
 
@@ -56,6 +67,9 @@ compileInvader:
 runTestInvader:
 	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestInvader 
 
+
+###############################################Partie Test Balls Simulator#############################################################""
+
 balls: compileBalls runTestBallsSimulator
 
 compileBalls:
@@ -64,10 +78,18 @@ compileBalls:
 runTestBallsSimulator:
 	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestBallsSimulator
 
-clean:
-#pour windows
-	del /S /Q $(BIN_DIR)\* 
-#pour linux
-# rm -rf $(BIN_DIR)/* 
 
-###############################################Partie Test Balls Simulator#############################################################""
+###############################################Partie Test Cells#############################################################""
+
+compileCells:
+	javac -d $(BIN_DIR) $(CELLS_DIR)/*.java
+
+###############################################Partie Test Conway#############################################################""
+
+conway: compileCells compileConway runTestConway
+
+compileConway:
+	javac -d $(BIN_DIR) -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(CONWAY_DIR)/*.java
+
+runTestConway:
+	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestConway

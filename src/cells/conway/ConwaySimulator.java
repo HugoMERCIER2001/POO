@@ -1,11 +1,12 @@
-import gui.GUISimulator;
+import gui.*;
+import java.awt.Color;
 
 public class ConwaySimulator implements Simulable{
     private Conway conway;
     private GUISimulator gui;
     
-    public ConwaySimulator(GUISimulator gui){
-        this.conway = new Conway(10, 10);
+    public ConwaySimulator(GUISimulator gui, Conway conway){
+        this.conway = conway;
         this.gui = gui;
     }
 
@@ -16,10 +17,11 @@ public class ConwaySimulator implements Simulable{
 
         //partie affichage
         gui.reset();
-        for (int i = 0; i < this.conway.getNbCells(); i++) {
-            if (this.conway.getCellByIndice(i).getState() == 1){
-                gui.addGraphicalElement(new Rectangle(this.conway.getCellByIndice(i).getX(), this.conway.getCellByIndice(i).getY(),
-                                                    Color.WHITE, Color.WHITE, 10));
+        for (int i = 0; i < this.conway.getLength(); i++) {
+            for(int j = 0; j < this.conway.getHeight(); j++){
+                if(this.conway.getCellByIndice(i, j).getState() == 1){
+                    gui.addGraphicalElement(new Rectangle(i*50, j*50, Color.GREEN, Color.BLACK, 50));
+                }
             }
         }
     }

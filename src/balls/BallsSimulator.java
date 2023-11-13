@@ -2,6 +2,8 @@ import java.awt.Point;
 import java.awt.Color;
 
 import gui.GUISimulator;
+import gui.Oval;
+import gui.Simulable;
 
 public class BallsSimulator implements Simulable{
     private Balls balls;
