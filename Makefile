@@ -34,18 +34,27 @@
 
 ###############################################Partie Test Balls Simulator#############################################################""
 
-all : runTestBallsSimulator
+# Define the source directories
+SRC_DIR = src
+BIN_DIR = bin
+BALLS_DIR = $(SRC_DIR)/balls
 
+# Define the classpath
+# CLASSPATH = .:lib/gui.jar # Linux
+CLASSPATH = .;lib/gui.jar # Windows
 
-compileTestBallsSimulator:
-	javac Balls.java
-	javac -classpath lib/gui.jar:. BallsSimulator.java
-	javac -classpath lib/gui.jar:. TestBallsSimulator.java
+all: balls
 
-runTestBallsSimulator: compileTestBallsSimulator
-	java -classpath lib/gui.jar:. TestBallsSimulator
+balls: compileBalls runTestBallsSimulator
+
+compileBalls:
+	javac -d $(BIN_DIR) -classpath $(CLASSPATH) $(BALLS_DIR)/*.java
+
+runTestBallsSimulator:
+	java -classpath $(CLASSPATH) TestBallsSimulator
 
 clean:
-	rm -rf bin/
+	rm -rf $(SRC_DIR)/*.class
+
 
 ###############################################Partie Test Balls Simulator#############################################################""
