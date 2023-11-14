@@ -36,3 +36,11 @@ Pourquoi : parce que il faut ajouter des paramètres lors de la compilation et e
 En réalité, on peut le faire directement dans le terminal mais devient pénible à la longue.
 
 Ensuite je tiens à spécifier que la classe BallsSimulator possède un constructeur particulier que j'ai définie de la sorte pour avoir un prompte de sortie qui correspond presque exactement à l'exemple donné à la suite de la figure 3 de cette partie, mais que c'est un constructeur pas dutout général et que son implémentation importe peu je crois.
+
+## 4
+
+### 4.1 Programmation d'un systême de Boids :
+Les valeurs par défault des attributs des Boids sont :
+- x, y, velocityX, velocityY = 0.0f;
+- distanceVision = 1.0f;
+- angleVision = 160.0f;
