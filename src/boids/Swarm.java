@@ -28,4 +28,46 @@ public class Swarm {
             return this.boids[i];
         }
     }
+
+    //Liste des constructeurs :
+    public Swarm(int length, int height, int nbBoids){
+        //Si on ne précise que ces paramètres, on applique seulement les 3 règles de bases sur nos Boids (Cohésion, Alignement, Séparation) et on génère les points aléatoirements.
+        this.length = length;
+        this.height = height;
+        this.nbBoids = nbBoids;
+        this.rulesApplied = {new Rule1(100), new Rule2(8), new Rule3(1, 100)};
+        this.boids = new Boid[nbBoids];
+        this.boidsInit = new Boid[nbBoids];
+        for(int i = 0; i <= nbBoids; i++){
+            this.boids[i] = new Boid(Math.random() * length, Math.random() * height);
+            this.boidsInit[i] = (Boid) this.boids[i].clone();
+        }
+    }
+
+    public Swarm(int length, int height,int nbBoids, Rules[] rules){
+        this.length = length;
+        this.height = height;
+        this.nbBoids = nbBoids;
+        this.rulesApplied = new Rules[rules.length];
+        this.boids = new Boid[nbBoids];
+        this.boidsInit = new Boid[nbBoids];
+        for(int i = 0; i <= rules.length; i++){
+            this.rulesApplied[i] = (Rules) rules[i].clone();
+        }
+        for(int i = 0; i <= nbBoids; i++){
+            this.boids[i] = new Boid(Math.random() * length, Math.random() * height);
+            this.boidsInit[i] = (Boid) this.boids[i].clone();
+        }
+    }
+
+    //Liste des méthodes particulières :
+    @Override
+    public String toString(){
+
+    }
+
+    public void next(){
+
+    }
+
 }

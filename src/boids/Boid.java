@@ -40,7 +40,7 @@ public class Boid{
         this.y = 0.0d;
         this.velocityX = 0.0d;
         this.velocityY = 0.0d;
-        this.distanceVision = 1.0d;
+        this.distanceVision = 400.0d;
         this.angleVision = 160.0d;
     }
 
@@ -50,7 +50,7 @@ public class Boid{
         this.y = y;
         this.velocityX = 0.0d;
         this.velocityY = 0.0d;
-        this.distanceVision = 1.0d;
+        this.distanceVision = 400.0d;
         this.angleVision = 160.0d;
     }
 
@@ -60,7 +60,7 @@ public class Boid{
         this.y = y;
         this.velocityX = velocityX;
         this.velocityY = velocityY;
-        this.distanceVision = 1.0d;
+        this.distanceVision = 400.0d;
         this.angleVision = 160.0d;
     }
 
@@ -75,11 +75,16 @@ public class Boid{
     }
 
     //Listes des méthodes particulières :
-    public double verifieDistance(Boid b){
-        //On vérifie si la distance entre 2 Boids en norme 2 (choix de la norme 2 car on est en 2D) est inférieur à la distanceVision du boid "this". Si oui on renvoi 1 sinon 0.
+    public double calculDistance(Boid b){
+        //On calcul la distance entre le Boid "this" et le Boid "b" donné en argument.
         double distanceX = this.x - b.x;
         double distanceY = this.y - b.y;
         double distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+        return distance;
+    }
+    public int verifieDistance(Boid b){
+        //On vérifie si la distance entre 2 Boids en norme 2 (choix de la norme 2 car on est en 2D) est inférieur à la distanceVision du boid "this". Si oui on renvoi 1 sinon 0.
+        double distance = this.calculDistance(b);
         if (distance > this.distanceVision){
             return 0;
         }
@@ -103,6 +108,20 @@ public class Boid{
             return 1;
         }
     }
+
+
+    public int verifieVoisinage(Boid b){
+        //On vérifie si le Boid "b" appartient au voisinage du Boid "this", si oui renvoi 1, sinon renvoie 0.
+        if(this.verifieDistance(b) == 1 && this.verifieAngle(b) == 1){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    
+    }
+
+
 
     @Override
     public String toString(){
