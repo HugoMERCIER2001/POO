@@ -93,3 +93,14 @@ compileConway:
 
 runTestConway:
 	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestConway
+
+
+###############################################Partie Test Swarm#############################################################""
+
+swarm: compileSwarm runTestSwarm
+
+compileSwarm:
+	javac -d $(BIN_DIR) -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(BOIDS_DIR)/*.java
+
+runTestSwarm:
+	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestSwarm

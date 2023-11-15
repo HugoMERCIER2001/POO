@@ -1,4 +1,4 @@
-package boids;
+
 public class Boid{
     private double x;
     private double y;
@@ -121,6 +121,9 @@ public class Boid{
     
     }
 
+    public Boid copieBoid(){
+        return new Boid(this.x, this.y, this.velocityX, this.velocityY, this.distanceVision, this.angleVision );
+    }
 
 
     @Override
