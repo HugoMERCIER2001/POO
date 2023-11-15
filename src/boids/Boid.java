@@ -125,7 +125,7 @@ public class Boid{
 
     @Override
     public String toString(){
-        return "ce Boid de position (" + this.x + ", " + this.y + ") a un vecteur vitesse suivant : (" + this.velocityX + ", " + this.velocityY + ") et une distance de vision de " + this.distanceVision + "et un angle de vision de " + this.angleVision + "°.";
+        return "Boid de position (" + this.x + ", " + this.y + ") a un vecteur vitesse suivant : (" + this.velocityX + ", " + this.velocityY + ") et une distance de vision de " + this.distanceVision + "et un angle de vision de " + this.angleVision + "°.";
     }
 
 }

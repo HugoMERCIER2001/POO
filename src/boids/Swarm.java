@@ -44,7 +44,8 @@ public class Swarm {
         }
     }
 
-    public Swarm(int length, int height,int nbBoids, Rules[] rules){
+    public Swarm(int length, int height, int nbBoids, Rules[] rules){
+        //Constructeurs où l'ensemble des Boids sont générés aléatoirement encore, mais l'ensemble des règles sont spécifiés.
         this.length = length;
         this.height = height;
         this.nbBoids = nbBoids;
@@ -60,10 +61,47 @@ public class Swarm {
         }
     }
 
+
+    public Swarm(int length, int height, Rules[] rules, Boid[] boids){
+        //Constructeurs où l'ensemble des Boids sont générés aléatoirement encore, mais l'ensemble des règles sont spécifiés.
+        this.length = length;
+        this.height = height;
+        this.nbBoids = boids.length;
+        this.rulesApplied = new Rules[rules.length];
+        this.boids = new Boid[nbBoids];
+        this.boidsInit = new Boid[nbBoids];
+        for(int i = 0; i <= rules.length; i++){
+            this.rulesApplied[i] = (Rules) rules[i].clone();
+        }
+        for(int i = 0; i <= nbBoids; i++){
+            this.boids[i] = (Boid) boids[i].clone();
+            this.boidsInit[i] = (Boid) boids[i].clone();
+        }
+    }
+
+    public Swarm(int length, int height, Boid[] boids){
+        //Constructeurs où l'ensemble des Boids sont générés aléatoirement encore, mais l'ensemble des règles sont spécifiés.
+        this.length = length;
+        this.height = height;
+        this.nbBoids = boids.length;
+        this.rulesApplied = {new Rule1(100), new Rule2(8), new Rule3(1, 100)};
+        this.boids = new Boid[nbBoids];
+        this.boidsInit = new Boid[nbBoids];
+        for(int i = 0; i <= nbBoids; i++){
+            this.boids[i] = (Boid) boids[i].clone();
+            this.boidsInit[i] = (Boid) boids[i].clone();
+        }
+    }
+
+
     //Liste des méthodes particulières :
     @Override
     public String toString(){
-
+        String retour = "";
+        for(int i = 0; i <= this.nbBoids; i++){
+            retour = retour + this.boids[i].toString();
+        }
+        return retour;
     }
 
     public void next(){
