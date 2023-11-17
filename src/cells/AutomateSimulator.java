@@ -42,7 +42,7 @@ public abstract class AutomateSimulator implements Simulable{
     @Override
     public void next() {
         this.automate.next();
-        System.out.println(this.automate.toString());
+        //System.out.println(this.automate.toString());
         draw();
     }
 
@@ -59,6 +59,7 @@ public abstract class AutomateSimulator implements Simulable{
     @Override
     public void restart(){
         this.automate.reInit();
+        System.out.println(automate.getInit());
         System.out.println(automate.getInit());        
         draw();
     }

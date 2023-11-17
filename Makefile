@@ -96,3 +96,12 @@ compileConway:
 runTestConway:
 	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestConway
 
+###############################################Partie Test Immigration#############################################################""
+
+immigration: compileCells compileImmigration runTestImmigration
+
+compileImmigration:
+	javac -d $(BIN_DIR) -cp .$(SEP)./$(CELLS_DIR)$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR)/*.class $(CELLS_DIR)/*Immigration*.java
+
+runTestImmigration:
+	java -classpath .$(SEP)$(LIB_DIR)/gui.jar$(SEP)$(BIN_DIR) TestImmigration

@@ -2,8 +2,6 @@ import gui.GUISimulator;
 import java.awt.Color;
 
 public class TestConway {
-
-
     public static void main(String[] args) {
         Conway conway = new Conway(75, 50);
         int cellSize = 10;

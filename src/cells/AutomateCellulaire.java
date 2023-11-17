@@ -29,6 +29,9 @@ public abstract class AutomateCellulaire {
         return this.height;
     }
 
+    public abstract int getNbStates();
+
+
     public void setCellState(int i, int j, int state){
         if (i >= 0 && i < length && j >= 0 && j < height) {
             this.cells[i][j].setState(state);
@@ -53,13 +56,15 @@ public abstract class AutomateCellulaire {
         }
     }
 
-    public int getNbNeighbours(int i, int j){
+    public int getNbNeighbours(int i, int j, int neighboursState){
         int nbNeighbours = 0;
-        for(int k = -1; k <= 1; k++){
-            for(int l = -1; l <= 1; l++){
-                if(!(k == 0 && l == 0)){
-                    if(i + k >= 0 && i + k < getLength() && j + l >= 0 && j + l < getHeight()){
-                        nbNeighbours += getCellState(i + k, j + l);
+        for(int k = i - 1; k <= i + 1; k++){
+            for(int l = j - 1; l <= j + 1; l++){
+                if(k != i || l != j){
+                    if (k >= 0 && k < length && l >= 0 && l < height) {
+                        if(this.cells[k][l].getState() == neighboursState){
+                            nbNeighbours++;
+                        }
                     }
                 }
             }
